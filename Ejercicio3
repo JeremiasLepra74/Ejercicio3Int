@@ -1,0 +1,86 @@
+Algoritmo sin_titulo
+	Definir CantSeguros, NumSeguros, NumDoc, TotalSeguros, SegA, SegH, Cobertura Como Entero
+	Definir NomClnt, ApeClnt, TipoSeguro, Seguros, Cliente, DebAut Como Caracter
+	Definir MontoSeguro, Iva, Cuota, TotalCuota Como Real
+	Iva = 1.21
+	CantSeguros = 0
+	SegA = 0
+	SegH = 0
+	
+	Mostrar "Ingrese la cantidad de seguros a cobrar: "
+	Leer NumSeguros
+	
+	Para i<-1 Hasta NumSeguros Con Paso 1 Hacer
+		Mostrar "ingrese nombre y apellido"
+		Leer Cliente
+		Mostrar "Numero de Documento: "
+		Leer NumDoc
+		Mostrar "Monto a asegurar"
+		Leer MontoSeguro
+		Mostrar "Seleccione tipo de seguro: A- Automotor | B- Hogar "
+		Leer TipoSeguro
+		
+		Si TipoSeguro = "A"
+			Repetir
+			SegA = SegA + 1
+			Mostrar "Tipo de coberturas: 1- Tercero basico | 2- Tercero Completo | 3- Riesgo contra toda franquicia"
+			Leer Cobertura
+			Segun Cobertura Hacer
+				1: Mostrar "Cobertura (1) Cuota mensual base de $1.000. Ingrese valor de cuota mensual: " 
+					Leer Cuota
+				2: Mostrar "Cobertura (2) Cuota mensual base de $1.500. Ingrese valor de cuota mensual: " 
+					Leer Cuota
+				3: Mostrar "Cobertura (3) Cuota mensual base de $3.000. Ingrese valor de cuota mensual: "
+					Leer Cuota
+			FinSegun
+						Si Cobertura <1 o Cobertura > 3
+							Mostrar "Ingreso un numero no valido"
+						FinSi
+					Hasta Que Cobertura = 1 o Cobertura = 2 o Cobertura = 3
+				SiNo
+					Si TipoSeguro = "B"
+						SegH = SegH + 1
+						Repetir
+							Mostrar "Tipo de coberturas: 7- Hogar Base | 8- Hogar Plus | 9- Hogar completo"
+							Leer Cobertura
+							Segun Cobertura Hacer
+								7: Mostrar "Cobertura (7) Cuota mensual base de $500. Ingrese valor de cuota mensual: " 
+									Leer Cuota
+								8: Mostrar "Cobertura (8) Cuota mensual base de $750. Ingrese valor de cuota mensual: " 
+									Leer Cuota
+								9: Mostrar "Cobertura (9) Cuota mensual base de $600. Ingrese valor de cuota mensual: "
+									Leer Cuota
+							FinSegun
+							Si Cobertura <7 o Cobertura > 9
+								Mostrar "Ingreso un numero no valido"
+							FinSi
+						Hasta Que Cobertura = 7 o Cobertura = 8 o Cobertura = 9
+					FinSi
+		FinSi
+			Mostrar "desea agregar debito automatico? S/N"
+			Leer DebAut
+			Si DebAut = "S" Entonces
+				TotalCuota = (MontoSeguro * 0.005) +  (Cuota * Iva) - (Cuota * 0.05)
+			Sino Si DebAut = "N"
+					TotalCuota = (MontoSeguro * 0.005) + (Cuota * Iva)
+				FinSi
+			FinSi
+				Mostrar "Cliente :" Cliente
+				Mostrar "Documento: " NumDoc
+				Mostrar "Seguro: " TipoSeguro
+				Mostrar "Cobertura: " Cobertura
+				Mostrar "Monto a asegurar: " MontoSeguro
+				Mostrar "Cuota mensual: " TotalCuota
+				Si DebAut = "S" Entonces
+					Mostrar "TIENE DESCUENTO POR ADHERIR A DEBITO AUTOMATICO"
+				FinSi
+				CantSeguros = CantSeguros + 1
+			FinPara
+			
+			Mostrar "Seguros cotizados: " CantSeguros
+			Mostrar "Seguros automotor: " SegA
+			Mostrar "Seguros Hogar: " SegH
+	
+	
+	
+FinAlgoritmo
